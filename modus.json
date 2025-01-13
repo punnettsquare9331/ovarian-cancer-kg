@@ -26,7 +26,7 @@
       "type": "neo4j",
       "dbUri": "neo4j+s://2b7533a1.databases.neo4j.io",
       "username": "neo4j",
-      "password": "{{NEO4J_PASSWORD}}"
+      "password": "8V3hUCU44IYZwV3yMnZ-Vj4QgaLyg1N1pKlg3_b9UeE"
     }
   }
 }
