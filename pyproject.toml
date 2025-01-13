@@ -1,0 +1,27 @@
+[project]
+name = "ovarian-immune-kg"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "Puneet Velidi", email = "psv23@cornell.edu" }
+]
+dependencies = [
+    "neo4j>=5.27.0",
+    "pandas>=2.2.3",
+]
+readme = "README.md"
+requires-python = ">= 3.8"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = []
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ovarian_immune_kg"]
