@@ -20,6 +20,7 @@ class Neo4jGraph:
     
     def close(self):
         self.driver.close()
+        
     
     def create_graph(self, data):
         with self.driver.session() as session:
