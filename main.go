@@ -156,17 +156,17 @@ func TestNeo4jConnection() error {
 	return nil
 }
 
-func ExecuteGeneratedQuery(prompt string) (string, error) {
+func ExecuteGeneratedQuery(prompt string) (string, string, error) {
 	// Generate the query
 	query, err := GenerateQuery(prompt)
 	if err != nil {
-		return "", fmt.Errorf("failed to generate query: %w", err)
+		return "", "", fmt.Errorf("failed to generate query: %w", err)
 	}
 
 	// Execute the query on Neo4j
 	result, err := neo4j.ExecuteQuery(connectionName, query, nil)
 	if err != nil {
-		return "", fmt.Errorf("failed to execute query: %w", err)
+		return "", "", fmt.Errorf("failed to execute query: %w", err)
 	}
 
 	// Extract and format the data from the result
@@ -176,12 +176,12 @@ func ExecuteGeneratedQuery(prompt string) (string, error) {
 		for _, key := range record.Keys {
 			value, ok := record.Get(key)
 			if !ok {
-				return "", fmt.Errorf("key '%s' not found in record %d", key, i)
+				return "", "", fmt.Errorf("key '%s' not found in record %d", key, i)
 			}
 			formattedResult.WriteString(fmt.Sprintf("  %s: %v\n", key, value))
 		}
 	}
 
-	// Return the formatted result as a string
-	return formattedResult.String(), nil
+	// Return the generated query and the formatted result as strings
+	return query, formattedResult.String(), nil
 }
